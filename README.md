@@ -7,7 +7,7 @@
 [![Latest Stable Release](https://img.shields.io/github/v/release/pkgforge-dev/OpenBoardView-AppImage)](https://github.com/pkgforge-dev/OpenBoardView-AppImage/releases/latest)
 
 <p align="center">
-  <img src="https://github.com/pkgforge-dev.png" width="128" />
+  <img src="https://raw.githubusercontent.com/OpenBoardView/OpenBoardView/f17c1ecaec96a2a69da83b91a01108f92bbebc68/asset/icon.svg" width="128" />
 </p>
 
 
