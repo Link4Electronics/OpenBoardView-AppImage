@@ -8,7 +8,7 @@ export ARCH VERSION
 export OUTPATH=./dist
 export ADD_HOOKS="self-updater.hook"
 export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*$ARCH.AppImage.zsync"
-export ICON=PATH_OR_URL_TO_ICON
+export ICON=https://raw.githubusercontent.com/OpenBoardView/OpenBoardView/f17c1ecaec96a2a69da83b91a01108f92bbebc68/asset/icon.svg
 export DESKTOP=PATH_OR_URL_TO_DESKTOP_ENTRY
 
 # Deploy dependencies
