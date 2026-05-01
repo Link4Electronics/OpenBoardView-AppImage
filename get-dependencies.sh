@@ -30,7 +30,14 @@ if [ "${DEVEL_RELEASE-}" = 1 ]; then
     git clone --recursive --depth 1 "$REPO" ./OpenBoardView
 else
 	echo "Making stable build of OpenBoardView..."
-	VERSION="$(git ls-remote --tags --refs "$REPO" | awk -F/ '{print $NF}' | sort -V | tail -n1)"
+	VERSION_CLEAN="$(git ls-remote --tags --refs "$REPO" | awk -F/ '{print $NF}' | sed 's/^v//' | sort -V | tail -n1)"
+
+	# Check if the tag exists without the 'v' or with it
+	if git ls-remote --tags "$REPO" | grep -q "refs/tags/$VERSION_CLEAN"; then
+    	VERSION="$VERSION_CLEAN"
+	else
+    	VERSION="v$VERSION_CLEAN"
+	fi
 	git clone --recursive --depth 1 --branch "$VERSION" --single-branch "$REPO" ./OpenBoardView
 fi
 echo "$VERSION" > ~/version
