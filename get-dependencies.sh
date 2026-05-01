@@ -30,12 +30,8 @@ if [ "${DEVEL_RELEASE-}" = 1 ]; then
     git clone --recursive --depth 1 "$REPO" ./OpenBoardView
 else
 	echo "Making stable build of OpenBoardView..."
-	VERSION_TAG=9.95.2
-	VERSION=$(git ls-remote --tags "$REPO" | grep "$VERSION_TAG" | tail -n1 | awk '{print $1}')
-	git clone "$REPO" ./OpenBoardView
-	cd OpenBoardView
-	git checkout "$COMMIT"
-	git submodule update --init --recursive
+	VERSION=9.95.2
+    git clone --branch "$VERSION" --single-branch "$REPO" ./OpenBoardView
 fi
 echo "$VERSION" > ~/version
 #echo "Making nightly build of OpenBoardView..."
