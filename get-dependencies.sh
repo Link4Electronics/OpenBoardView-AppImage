@@ -22,7 +22,7 @@ get-debloated-pkgs --add-common --prefer-nano
 # If the application needs to be manually built that has to be done down here
 echo "Building OpenBoardView..."
 echo "---------------------------------------------------------------"
-git clone --recursive https://github.com/OpenBoardView/OpenBoardView ./OpenBoardView
+git clone --recursive --depth 1 https://github.com/OpenBoardView/OpenBoardView ./OpenBoardView
 cd ./OpenBoardView && (
 	if [ "${DEVEL_RELEASE-}" = 1 ]; then
 		echo "Making nightly build of OpenBoardView..."
