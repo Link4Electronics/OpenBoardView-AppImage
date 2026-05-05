@@ -23,22 +23,21 @@ get-debloated-pkgs --add-common --prefer-nano
 echo "Building OpenBoardView..."
 echo "---------------------------------------------------------------"
 git clone --recursive --depth 1 https://github.com/OpenBoardView/OpenBoardView ./OpenBoardView
-cd ./OpenBoardView && (
-	if [ "${DEVEL_RELEASE-}" = 1 ]; then
-		echo "Making nightly build of OpenBoardView..."
-		echo "---------------------------------------------------------------"
-		git rev-parse --short HEAD > ~/version
-	else
-		echo "Making stable build of OpenBoardView..."
-		echo "---------------------------------------------------------------"
-		TAG=$(git tag | grep -vi 'rc\|alpha\|^R' | sort -nr | head -1)
-		git checkout "$TAG"
-		echo "$TAG" > ~/version
-	fi
-	cmake -DCMAKE_BUILD_TYPE=Release ./
-	make -j"$(nproc)"
-)
 
 mkdir -p ./AppDir/bin
+cd ./OpenBoardView
+if [ "${DEVEL_RELEASE-}" = 1 ]; then
+	echo "Making nightly build of OpenBoardView..."
+	echo "---------------------------------------------------------------"
+	git rev-parse --short HEAD > ~/version
+else
+	echo "Making stable build of OpenBoardView..."
+	echo "---------------------------------------------------------------"
+	TAG=$(git tag | grep -vi 'rc\|alpha\|^R' | sort -nr | head -1)
+	git checkout "$TAG"
+	echo "$TAG" > ~/version
+fi
+cmake -DCMAKE_BUILD_TYPE=Release .
+make -j"$(nproc)"
 ls
-mv -v OpenBoardView/openboardview/openboardview ./AppDir/bin
+mv -v openboardview/openboardview ./AppDir/bin
